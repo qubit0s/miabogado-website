@@ -126,6 +126,13 @@ jobs:
           only-fixed: true
           severity-cutoff: high
           fail-build: true
+      - name: Show scan findings
+        if: failure() && steps.build.outcome == 'success'
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          "$(ls /opt/hostedtoolcache/grype/*/x64/grype | head -1)" "${IMAGE}@${DIGEST}" -o table --only-fixed
+
       - name: Commit the new digest
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:
