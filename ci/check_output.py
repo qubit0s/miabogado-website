@@ -11,7 +11,7 @@ PUBLIC = Path(sys.argv[1] if len(sys.argv) > 1 else "public")
 OWN = {"www.mi-abogado.us", "mi-abogado.us"}
 OUTBOUND_A = {"www.facebook.com", "www.instagram.com", "www.tiktok.com", "www.miasistente.us", "www.mireembolso.com",
               "acis.eoir.justice.gov", "locator.ice.gov", "myaccount.uscis.gov", "client.docketwise.com"}
-FORM_HOSTS = {"auto.mi-abogado.us"}
+FORM_HOSTS = {"auto.mi-abogado.us", "mi-abogado-auto.poly.one"}
 HASHED = re.compile(r"\.[0-9a-f]{16,}\.(css|woff2|js|avif|webp)$|_hu_[0-9a-f]+\.(avif|webp)$|\.min\.[0-9a-f]{16,}\.js$")
 
 

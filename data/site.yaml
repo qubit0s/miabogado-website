@@ -7,7 +7,7 @@ email: hola@mi-abogado.us
 legal_name: Mi Abogado PC
 legal_address: 327 Marschall Road, Suite 210, Shakopee, MN 55379
 flat_fee: $9,500
-sms_optin_action: https://auto.mi-abogado.us/webhook/sms-optin
+sms_optin_action: https://mi-abogado-auto.poly.one/webhook/sms-optin
 social:
 - https://www.facebook.com/miabogadous
 - https://www.instagram.com/miabogadous/
