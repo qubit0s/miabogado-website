@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página no encontrada · Page not found | Mi Abogado</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+{{- partial "css.html" . }}
+</head>
+<body class="nf">
+<main class="nf__box">
+<p class="nf__kicker">404</p>
+<h1>Esta página no existe.<br><span lang="en">This page doesn't exist.</span></h1>
+<p class="nf__p">Llámanos al <a href="tel:{{ hugo.Data.site.phone_e164 }}">{{ hugo.Data.site.phone_display }}</a> · <span lang="en">Call us at</span> <a href="tel:{{ hugo.Data.site.phone_e164 }}">{{ hugo.Data.site.phone_display }}</a></p>
+<a class="btn" href="/">Inicio · Home</a>
+</main>
+</body>
+</html>

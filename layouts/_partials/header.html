@@ -1,0 +1,19 @@
+{{- $c := partial "c.html" . -}}
+{{- $s := hugo.Data.site -}}
+<p class="banner">{{ $c.banner }}</p>
+<header class="site-header">
+<a class="site-header__logo" href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ partial "picture.html" (dict "name" "logo-light" "class" "logo") }}</a>
+<nav class="site-nav" aria-label="{{ i18n "nav" }}">
+<ul>
+{{- range slice (dict "k" "defensa" "t" $c.navDefensa) (dict "k" "precios" "t" $c.navPrecios) (dict "k" "ena" "t" $c.navEna) (dict "k" "servicios" "t" $c.navServicios) }}
+<li><a href="{{ partial "pageurl.html" .k }}"{{ if eq $.RelPermalink (partial "pageurl.html" .k) }} aria-current="page"{{ end }}>{{ .t }}</a></li>
+{{- end }}
+</ul>
+<ul class="lang">
+{{- range sort .AllTranslations "Language.Weight" }}
+<li><a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}"{{ if eq .Language.Lang site.Language.Lang }} aria-current="true"{{ end }}>{{ upper .Language.Lang }}</a></li>
+{{- end }}
+</ul>
+</nav>
+<a class="btn btn--sm" href="tel:{{ $s.phone_e164 }}">{{ $s.phone_display }}</a>
+</header>

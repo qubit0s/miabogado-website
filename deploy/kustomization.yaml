@@ -1,0 +1,14 @@
+---
+# Applied by Flux into tenant-miabogado as its deployer account. Namespaced workload kinds only; never set
+# metadata.namespace (ci/check_deploy.py enforces both). CI rewrites the image digest on every release.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+  - hpa.yaml
+  - pdb.yaml
+images:
+  - name: ghcr.io/qubit0s/miabogado-website
+    digest: sha256:0000000000000000000000000000000000000000000000000000000000000000

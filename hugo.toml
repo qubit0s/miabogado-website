@@ -1,0 +1,53 @@
+baseURL = "https://www.mi-abogado.us/"
+title = "Mi Abogado"
+defaultContentLanguage = "es"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "RSS", "sitemap"]
+disableDefaultLanguageRedirect = true
+timeZone = "America/Chicago"
+copyright = "Mi Abogado PC"
+
+[outputFormats.SitemapAll]
+  mediaType = "application/xml"
+  baseName = "sitemap"
+  isPlainText = true
+  notAlternative = true
+
+[languages.es]
+  locale = "es-US"
+  label = "Español"
+  weight = 1
+[languages.es.outputs]
+  home = ["html", "SitemapAll"]
+
+[languages.en]
+  locale = "en-US"
+  label = "English"
+  weight = 2
+[languages.en.outputs]
+  home = ["html"]
+
+[markup.goldmark.parser.attribute]
+  block = true
+  title = false
+[markup.goldmark.renderer]
+  unsafe = false
+
+[minify]
+  minifyOutput = true
+
+[imaging]
+  resampleFilter = "CatmullRom"
+  [imaging.webp]
+    quality = 78
+    hint = "photo"
+  [imaging.avif]
+    quality = 55
+
+[sitemap]
+  changefreq = ""
+  priority = -1
+
+[markup.goldmark.extensions.typographer]
+  disable = true

@@ -1,0 +1,7 @@
+{{- $fonts := resources.Get "css/fonts.css" | resources.ExecuteAsTemplate "css/fonts.css" . -}}
+{{- $site := resources.Get "css/site.css" -}}
+{{- $all := slice $fonts $site | resources.Concat "css/bundle.css" -}}
+{{- $opts := dict "targetPath" "css/site.css" "minify" true "externals" (slice "/fonts/*") -}}
+{{- with $all | css.Build $opts | resources.Fingerprint "sha384" }}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+{{- end }}

@@ -1,0 +1,8 @@
+{{- $key := . -}}
+{{- if eq $key "home" -}}
+{{- return site.Home.RelPermalink -}}
+{{- else -}}
+{{- $p := site.GetPage (printf "/%s" $key) -}}
+{{- if not $p -}}{{- errorf "pageurl: no page %q" $key -}}{{- end -}}
+{{- return $p.RelPermalink -}}
+{{- end -}}

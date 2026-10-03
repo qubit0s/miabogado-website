@@ -1,0 +1,20 @@
+{{ define "main" }}
+{{- $c := partial "c.html" . -}}
+<header class="page-head">
+<div class="wrap">
+<h1 class="display">{{ $c.svcTitle }}</h1>
+<p class="lede">{{ $c.svcSub }}</p>
+</div>
+</header>
+<div class="wrap band">
+<div class="cols cols--4">
+{{- range $c.services }}
+<article class="card">
+<h2 class="h-xs">{{ .t }}</h2>
+<p>{{ .d }}</p>
+</article>
+{{- end }}
+</div>
+<p class="note-line">{{ $c.svcNote }} <a class="arrow" href="{{ partial "pageurl.html" "defensa" }}">{{ $c.navDefensa }} →</a></p>
+</div>
+{{ end }}

@@ -1,0 +1,8 @@
+{{- $pages := slice -}}
+{{- range hugo.Sites }}{{ $pages = $pages | append (slice .Home) | append .RegularPages }}{{ end -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{{- range $pages.ByPublishDate }}{{ if not .Params.noindex }}
+<url><loc>{{ .Permalink }}</loc>{{ range .AllTranslations }}<xhtml:link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}"/>{{ end }}{{ range .AllTranslations }}{{ if eq .Language.Lang "es" }}<xhtml:link rel="alternate" hreflang="x-default" href="{{ .Permalink }}"/>{{ end }}{{ end }}</url>
+{{- end }}{{ end }}
+</urlset>

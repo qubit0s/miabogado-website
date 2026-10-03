@@ -1,0 +1,6 @@
+{{ define "main" }}
+<article class="legal">
+<h1>{{ .Params.heading | default .Title }}</h1>
+{{ .Content }}
+</article>
+{{ end }}

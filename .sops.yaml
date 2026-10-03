@@ -1,0 +1,12 @@
+---
+# SOPS rules for this customer repo. PLACEHOLDERS, not keys: replace with PUBLIC age recipients (age1...):
+#   - this customer's key: its private half exists only as the Secret sops-age in tenant-<customer>, so the
+#     cluster decrypts these files only for this customer (another customer's key cannot read them);
+#   - the admins' key, so the platform team can edit and rotate.
+# Never the platform's cluster key and never another customer's key. Encrypted files: deploy/*.sops.yaml.
+creation_rules:
+  - path_regex: ^deploy/.*\.sops\.ya?ml$
+    encrypted_regex: ^(data|stringData)$
+    age: >-
+      REPLACE_WITH_CUSTOMER_AGE_RECIPIENT,
+      REPLACE_WITH_ADMIN_AGE_RECIPIENT

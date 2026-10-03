@@ -1,0 +1,12 @@
+skip: Saltar al contenido
+nav: Principal
+stars: 5 de 5 estrellas
+optin_err_bad_phone: Escribe un número de celular válido de 10 dígitos (EE. UU.).
+optin_err_no_consent: Para recibir mensajes de texto, marca la casilla de consentimiento.
+optin_err_no_name: Escribe tu nombre.
+optin_name: Nombre completo
+optin_phone: Número de celular
+optin_consent: Al marcar esta casilla y proporcionar mi número de teléfono celular, acepto recibir mensajes de texto de {{ .legal_name }}, incluyendo recordatorios de citas, solicitudes de información, actualizaciones de estado y respuestas a mis preguntas. La frecuencia de los mensajes varía. Pueden aplicarse tarifas de mensajes y datos. Responde AYUDA para asistencia o STOP para cancelar en cualquier momento. El consentimiento no es una condición de compra. No compartiremos tu información móvil con terceros ni afiliados con fines promocionales o de mercadeo.
+optin_privacy: Política de privacidad
+optin_terms: Términos de SMS
+optin_submit: Inscribirme

@@ -1,0 +1,10 @@
+{{- $f := dict "cin" "cinzel-latin-500" "cgn" "cormorant-garamond-latin-normal" "cgi" "cormorant-garamond-latin-italic" "ss" "source-sans-3-latin-wght-normal" -}}
+{{- $u := dict -}}
+{{- range $k, $n := $f }}{{ $r := resources.Get (printf "fonts/%s.woff2" $n) | resources.Fingerprint "sha384" }}{{ $u = merge $u (dict $k $r.RelPermalink) }}{{ end -}}
+@font-face{font-family:Cinzel;font-weight:500;font-display:swap;src:url({{ $u.cin }}) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:500 600;font-display:swap;src:url({{ $u.cgn }}) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500 600;font-display:swap;src:url({{ $u.cgi }}) format("woff2")}
+@font-face{font-family:"Source Sans 3";font-weight:200 900;font-display:swap;src:url({{ $u.ss }}) format("woff2")}
+@font-face{font-family:"Cormorant Fallback";src:local(Georgia);size-adjust:88.3803%;ascent-override:104.5482%;descent-override:32.4733%}
+@font-face{font-family:"Source Sans Fallback";src:local(Arial);size-adjust:93.7639%;ascent-override:109.2105%;descent-override:42.6604%;line-gap-override:0%}
+@font-face{font-family:"Cinzel Fallback";src:local(Georgia);size-adjust:124.7194%;ascent-override:78.2557%;descent-override:29.827%}

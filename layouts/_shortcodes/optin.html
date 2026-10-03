@@ -1,0 +1,13 @@
+{{- $s := hugo.Data.site -}}
+{{- range slice "bad_phone" "no_consent" "no_name" }}
+<p class="err" data-error="{{ . }}" hidden>{{ i18n (printf "optin_err_%s" .) }}</p>
+{{- end }}
+<form class="optin" method="post" action="{{ $s.sms_optin_action }}">
+<input type="hidden" name="lang" value="{{ site.Language.Lang }}">
+<p class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+<p><label for="optin-name">{{ i18n "optin_name" }}</label><input id="optin-name" name="name" type="text" required maxlength="80" autocomplete="name"></p>
+<p><label for="optin-phone">{{ i18n "optin_phone" }}</label><input id="optin-phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="(612) 555-0123"></p>
+<p class="check"><input id="optin-consent" name="consent" type="checkbox" value="yes"><label for="optin-consent">{{ i18n "optin_consent" (dict "legal_name" $s.legal_name) }}</label></p>
+<p class="links"><a href="{{ partial "pageurl.html" "privacidad" }}">{{ i18n "optin_privacy" }}</a> · <a href="{{ partial "pageurl.html" "sms" }}">{{ i18n "optin_terms" }}</a></p>
+<p><button type="submit">{{ i18n "optin_submit" }}</button></p>
+</form>

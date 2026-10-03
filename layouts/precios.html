@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{- $c := partial "c.html" . -}}
+<header class="page-head">
+<div class="wrap">
+<h1 class="display">{{ $c.priceTitle }}</h1>
+<p class="lede">{{ $c.priceSub }}</p>
+</div>
+</header>
+<section class="wrap band">
+<div class="price">
+<div class="price__card">
+<p class="kicker">{{ $c.feeLabel }}</p>
+<p class="price__amount">{{ hugo.Data.site.flat_fee }}</p>
+<p class="price__sub">{{ $c.feeSub }}</p>
+<p class="price__weekly">{{ $c.priceWeekly }}</p>
+</div>
+<div class="includes">
+<h2 class="h-s">{{ $c.inclTitle }}</h2>
+<ul class="checks">
+{{- range $c.includes }}
+<li>{{ . }}</li>
+{{- end }}
+</ul>
+</div>
+</div>
+<div class="cols cols--3 notes">
+{{- range $c.priceNotes }}
+<article>
+<h3>{{ .t }}</h3>
+<p>{{ .d }}</p>
+</article>
+{{- end }}
+</div>
+<p class="fine">{{ $c.priceDisclaimer }}</p>
+</section>
+{{ end }}

@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- $c := partial "c.html" . -}}
+{{- $e := $c.ena -}}
+<header class="page-head page-head--light narrow wrap">
+<p class="kicker kicker--rule">{{ $e.kicker }}</p>
+<h1 class="display">{{ $e.h1 }}</h1>
+</header>
+<div class="letter wrap">
+<div class="letter__body">
+{{- range $e.paras }}
+<p>{{ . }}</p>
+{{- end }}
+<p class="letter__sign">{{ $e.sign }}</p>
+</div>
+<aside class="letter__aside">
+{{ partial "picture.html" (dict "name" "ena-portrait") }}
+<div class="letter__desk">
+<h2 class="kicker">{{ $e.deskTitle }}</h2>
+<ul class="checks">
+{{- range $e.desk }}
+<li>{{ . }}</li>
+{{- end }}
+</ul>
+</div>
+</aside>
+</div>
+{{ end }}

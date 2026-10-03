@@ -1,0 +1,33 @@
+{{- $c := partial "c.html" . -}}
+{{- $s := hugo.Data.site -}}
+<footer class="site-footer">
+<h2>{{ $c.ctaTitle }}</h2>
+<p class="site-footer__sub">{{ $c.ctaSub }}</p>
+<p class="cta-row">
+<a class="btn" href="tel:{{ $s.phone_e164 }}">{{ $c.callNow }} · {{ $s.phone_display }}</a>
+<a class="btn btn--ghost" href="mailto:{{ $s.email }}">{{ $s.email }}</a>
+</p>
+<div class="site-footer__cols">
+<section>
+<h3>{{ $c.locTitle }}</h3>
+<p>{{ $c.locBody }}</p>
+</section>
+<section>
+<h3>{{ $c.linksTitle }}</h3>
+<ul>
+{{- range $s.resources }}
+<li><a href="{{ .href }}" rel="noopener noreferrer" target="_blank">{{ index $c .key }}</a></li>
+{{- end }}
+</ul>
+</section>
+<section>
+<h3>{{ $c.contactTitle }}</h3>
+<ul>
+<li><a href="tel:{{ $s.phone_e164 }}">{{ $s.phone_display }}</a></li>
+<li><a href="mailto:{{ $s.email }}">{{ $s.email }}</a></li>
+</ul>
+</section>
+</div>
+<p class="site-footer__legal-links"><a href="{{ partial "pageurl.html" "privacidad" }}">{{ $c.footerPrivacy }}</a> · <a href="{{ partial "pageurl.html" "sms" }}">{{ $c.footerSms }}</a></p>
+<p class="site-footer__fine">© {{ now.Year }} {{ $s.brand }} · {{ $c.footerLegal }}</p>
+</footer>

@@ -1,0 +1,42 @@
+---
+# CI for a customer solution repo (copied from k3s-flux templates/customer-app). Renders deploy/ and rejects
+# cluster-scoped or other disallowed kinds, unpinned images and unencrypted secrets. No secrets are used.
+name: validate
+
+"on":
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  GOTOOLCHAIN: go1.26.2
+  KUSTOMIZE_VERSION: v5.8.2
+  PYYAML_VERSION: 6.0.3
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
+        with:
+          python-version: "3.13"
+
+      - name: Install pinned tools
+        run: |
+          python -m pip install "pyyaml==$PYYAML_VERSION"
+          GOBIN="$RUNNER_TEMP/bin" go install "sigs.k8s.io/kustomize/kustomize/v5@$KUSTOMIZE_VERSION"
+
+      - name: Render deploy/ and check it
+        run: |
+          "$RUNNER_TEMP/bin/kustomize" build deploy > "$RUNNER_TEMP/build.yaml"
+          python ci/check_deploy.py "$RUNNER_TEMP/build.yaml" .

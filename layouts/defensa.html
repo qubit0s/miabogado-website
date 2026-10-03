@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- $c := partial "c.html" . -}}
+<header class="page-head">
+<div class="wrap">
+<p class="kicker">{{ $c.heroKicker }}</p>
+<h1 class="display">{{ $c.defTitle }}</h1>
+<p class="lede">{{ $c.defSub }}</p>
+</div>
+</header>
+<section class="narrow wrap">
+<h2 class="h-l">{{ $c.defTimelineTitle }}</h2>
+<ol class="timeline">
+{{- range $c.timeline }}
+<li>
+<span class="timeline__n" aria-hidden="true">{{ .n }}</span>
+<div><h3>{{ .t }}</h3><p>{{ .d }}</p></div>
+</li>
+{{- end }}
+</ol>
+</section>
+<section class="callout callout--dark inset">
+<h2>{{ $c.takeTitle }}</h2>
+<p>{{ $c.takeBody }}</p>
+</section>
+<section class="callout callout--light inset">
+<h2>{{ $c.fortTitle }}</h2>
+<p>{{ $c.fortBody }}</p>
+</section>
+<section class="narrow wrap">
+<h2 class="h-l">{{ $c.faqTitle }}</h2>
+<div class="faq">
+{{- range $c.faq }}
+<details>
+<summary><span>{{ .q }}</span></summary>
+<p>{{ .a }}</p>
+</details>
+{{- end }}
+</div>
+</section>
+{{ end }}

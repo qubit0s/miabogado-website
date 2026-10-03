@@ -1,0 +1,25 @@
+brand: Mi Abogado
+phone_display: +1 (612) 491-9110
+phone_e164: '+16124919110'
+sms_display: (612) 230-0000
+sms_e164: '+16122300000'
+email: hola@mi-abogado.us
+legal_name: Mi Abogado PC
+legal_address: 327 Marschall Road, Suite 210, Shakopee, MN 55379
+flat_fee: $9,500
+sms_optin_action: https://auto.mi-abogado.us/webhook/sms-optin
+social:
+- https://www.facebook.com/miabogadous
+- https://www.instagram.com/miabogadous/
+- https://www.tiktok.com/@miabogadous
+resources:
+- key: linkCourt
+  href: https://acis.eoir.justice.gov/en/
+- key: linkIce
+  href: https://locator.ice.gov/odls/#/search
+- key: linkUscis
+  href: https://myaccount.uscis.gov/sign-in
+- key: linkItin
+  href: https://www.mireembolso.com/itin
+- key: linkPortal
+  href: https://client.docketwise.com/c/sign_in

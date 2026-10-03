@@ -1,0 +1,12 @@
+{{- $m := index hugo.Data.images .name -}}
+{{- $img := resources.Get (printf "images/%s" $m.file) -}}
+{{- $alt := index $m.alt site.Language.Lang -}}
+{{- $widths := $m.widths -}}
+{{- $mid := index $widths (div (len $widths) 2) -}}
+{{- $fb := $img.Resize (printf "%dx webp" $mid) -}}
+{{- $eager := $m.priority -}}
+<picture>
+<source type="image/avif" sizes="{{ $m.sizes }}" srcset="{{ range $i, $w := $widths }}{{ if $i }}, {{ end }}{{ ($img.Resize (printf "%dx avif" $w)).RelPermalink }} {{ $w }}w{{ end }}">
+<source type="image/webp" sizes="{{ $m.sizes }}" srcset="{{ range $i, $w := $widths }}{{ if $i }}, {{ end }}{{ ($img.Resize (printf "%dx webp" $w)).RelPermalink }} {{ $w }}w{{ end }}">
+<img{{ with .class }} class="{{ . }}"{{ end }} src="{{ $fb.RelPermalink }}" width="{{ $fb.Width }}" height="{{ $fb.Height }}" alt="{{ $alt }}" decoding="async"{{ if $eager }} fetchpriority="high"{{ else }} loading="lazy"{{ end }}>
+</picture>

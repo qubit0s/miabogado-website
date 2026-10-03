@@ -1,0 +1,109 @@
+{{ define "main" }}
+{{- $c := partial "c.html" . -}}
+{{- $s := hugo.Data.site -}}
+<section class="hero">
+<div class="hero__grid wrap">
+<div>
+<p class="kicker kicker--rule">{{ $c.heroKicker }}</p>
+<h1 class="display">{{ $c.heroTitle }}</h1>
+<p class="lede">{{ $c.heroSub }}</p>
+<p class="cta-row">
+<a class="btn btn--lg" href="tel:{{ $s.phone_e164 }}">{{ $c.callNow }} · {{ $s.phone_display }}</a>
+<a class="btn btn--ghost btn--lg" href="{{ partial "pageurl.html" "defensa" }}">{{ $c.ntaLink }}</a>
+</p>
+</div>
+<figure class="hero__photo">
+{{ partial "picture.html" (dict "name" "hero-woman") }}
+</figure>
+</div>
+<ul class="stats wrap">
+<li><strong class="accent">{{ $c.stat1B }}</strong> {{ $c.stat1 }}</li>
+<li><strong>{{ $c.stat2B }}</strong> {{ $c.stat2 }}</li>
+<li><strong>{{ $c.stat3B }}</strong> {{ $c.stat3 }}</li>
+<li><strong>{{ $c.stat4B }}</strong> {{ $c.stat4 }}</li>
+</ul>
+</section>
+
+<section class="band wrap">
+<header class="band__head">
+<h2 class="h-l">{{ $c.ntaTitle }}</h2>
+<p class="band__sub">{{ $c.ntaSub }}</p>
+</header>
+<div class="cols cols--3">
+{{- range $c.steps }}
+<article class="step">
+<p class="kicker">{{ .k }}</p>
+<h3>{{ .t }}</h3>
+<p>{{ .d }}</p>
+</article>
+{{- end }}
+</div>
+<p class="more"><a class="arrow" href="{{ partial "pageurl.html" "defensa" }}">{{ $c.ntaLink }} →</a></p>
+</section>
+
+<section class="rep inset">
+<h2 class="h-l rep__title">{{ $c.repTitle }}</h2>
+<p>{{ $c.repBody }}</p>
+</section>
+
+<section class="ena wrap">
+<div>
+<h2 class="h-l">{{ $c.enaQuote }}</h2>
+<p>{{ $c.enaBody }}</p>
+<a class="arrow" href="{{ partial "pageurl.html" "ena" }}">{{ $c.enaLink }} →</a>
+</div>
+<figure class="ena__photo">
+{{ partial "picture.html" (dict "name" "ena-seated") }}
+</figure>
+</section>
+
+<section class="reviews">
+<div class="wrap">
+<h2 class="h-l">{{ $c.revTitle }}</h2>
+<div class="reviews__grid">
+<figure class="review">
+<p class="stars" role="img" aria-label="{{ i18n "stars" }}">★★★★★</p>
+<blockquote><p>{{ $c.revQuote }}</p></blockquote>
+<figcaption>{{ $c.revBy }}</figcaption>
+</figure>
+<div class="trust">
+{{- range $c.trust }}
+<article>
+<h3 class="kicker">{{ .k }}</h3>
+<p>{{ .q }}</p>
+</article>
+{{- end }}
+</div>
+</div>
+<p class="fine">{{ $c.revNote }}</p>
+</div>
+</section>
+
+<section class="mascot inset">
+{{ partial "picture.html" (dict "name" "beto-y-gada") }}
+<div class="mascot__text">
+<p class="kicker">{{ $c.mascotKicker }}</p>
+<h2 class="h-m">{{ $c.mascotTitle }}</h2>
+<p>{{ $c.mascotBody }}</p>
+<ul class="stack">
+{{- range $c.guides }}
+<li><a href="{{ .href }}" rel="noopener noreferrer" target="_blank">{{ .t }} →</a></li>
+{{- end }}
+</ul>
+</div>
+</section>
+
+<section class="family wrap">
+<div>
+<h2 class="h-m">{{ $c.sisTitle }}</h2>
+<p>{{ $c.sisSub }}</p>
+</div>
+{{- range $c.sis }}
+<article class="card">
+<h3 class="kicker kicker--lg">{{ .t }}</h3>
+<p>{{ .d }}</p>
+<a href="{{ .href }}" rel="noopener noreferrer" target="_blank">{{ .link }} →</a>
+</article>
+{{- end }}
+</section>
+{{ end }}
