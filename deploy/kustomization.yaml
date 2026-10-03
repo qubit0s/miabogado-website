@@ -11,4 +11,4 @@ resources:
   - pdb.yaml
 images:
   - name: ghcr.io/qubit0s/miabogado-website
-    digest: sha256:f0f758ffdd0eeacd14497121a81a6ae964dcbe06b0f958467982e277ccba6ae1
+    digest: sha256:eeb40ffeb862814192c149a2ede0cbb0cd82d05a6ec479074f93410d125f461c
