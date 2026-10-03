@@ -19,7 +19,6 @@ concurrency:
 env:
   HUGO_VERSION: 0.167.0
   HUGO_SHA256: 4d84519b9f619e6d4c3fb45a50157abeabeb724f859c60605f44c23def6e1169
-  VNU_IMAGE: ghcr.io/validator/validator@sha256:68de9aa4faeb4929adb72999fb489927f1388f0ab6307b55e827f5a78dc8e13b
   IMAGE: ghcr.io/qubit0s/miabogado-website
 
 jobs:
@@ -56,10 +55,10 @@ jobs:
           python3 ci/check_contrast.py assets/css/site.css
           python3 ci/check_budget.py public
 
-      - name: HTML validity (Nu HTML Checker)
+      - name: HTML validity (Nu HTML Checker 26.10.2)
         run: |
-          docker run --rm -v "$PWD/public:/public:ro" "$VNU_IMAGE" \
-            --skip-non-html --also-check-css /public
+          npm install --no-save --prefix "$RUNNER_TEMP/vnu" vnu-jar@26.10.2
+          java -jar "$RUNNER_TEMP/vnu/node_modules/vnu-jar/build/dist/vnu.jar" --skip-non-html --also-check-css public
 
       - name: Links
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8  # v2.9.0
