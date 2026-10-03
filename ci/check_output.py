@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Hygiene of the built site (public/): no inline styles or scripts, hashed assets, no third-party loads."""
+import json
 import re
 import sys
 from html.parser import HTMLParser
@@ -21,6 +22,20 @@ class P(HTMLParser):
 
     def err(self, msg):
         self.errors.append(f"{self.name}: {msg}")
+
+    def handle_data(self, data):
+        if self.in_script and self.script_type == "application/ld+json":
+            try:
+                doc = json.loads(data)
+            except ValueError:
+                self.err("JSON-LD is not valid JSON")
+                return
+            if not isinstance(doc, list) or not all(isinstance(x, dict) and "@type" in x for x in doc):
+                self.err("JSON-LD must be a list of objects with @type (a quoted string means html/template escaped it)")
+
+    def handle_endtag(self, tag):
+        if tag == "script":
+            self.in_script = False
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)

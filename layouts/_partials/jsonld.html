@@ -2,4 +2,4 @@
 {{- $origin := "https://www.mi-abogado.us" -}}
 {{- $org := dict "@context" "https://schema.org" "@type" "LegalService" "@id" (printf "%s/#org" $origin) "name" $s.brand "url" (printf "%s/" $origin) "telephone" $s.phone_e164 "email" $s.email "image" (printf "%s/og-image.jpg" $origin) "areaServed" (dict "@type" "Country" "name" "United States") "availableLanguage" (slice (dict "@type" "Language" "name" "Spanish") (dict "@type" "Language" "name" "English")) "knowsAbout" (slice "Deportation defense" "Asylum" "Immigration court (EOIR)" "Work permits" "Family petitions") "sameAs" $s.social -}}
 {{- $page := dict "@context" "https://schema.org" "@type" "WebPage" "url" .Permalink "name" .Title "description" .Description "inLanguage" site.Language.Lang "isPartOf" (dict "@id" (printf "%s/#org" $origin)) -}}
-<script type="application/ld+json">{{ slice $org $page | jsonify }}</script>
+<script type="application/ld+json">{{ slice $org $page | jsonify | safeJS }}</script>
