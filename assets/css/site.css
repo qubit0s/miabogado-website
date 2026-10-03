@@ -217,7 +217,8 @@ p{margin:0}
 .nf__kicker{font-family:var(--caps);letter-spacing:.18em;color:var(--gold);font-size:14px;margin-bottom:14px}
 .nf__p{color:var(--sand);margin-bottom:24px}.nf__p a{color:var(--cream)}
 
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}@media print{
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media print{.banner,.site-nav,.skip,.cta-row,.btn{display:none!important}body{background:#fff;color:#000}a{color:inherit}}
 @media (max-width:820px){
   :root{--gutter:24px}
   .hero__grid,.rep,.ena,.reviews__grid,.mascot,.family,.price,.letter,.cols--3,.site-footer__cols{grid-template-columns:1fr}

@@ -79,6 +79,18 @@ def main():
     for f in PUBLIC.rglob("*"):
         if f.suffix in (".css", ".woff2", ".avif", ".webp", ".js") and not HASHED.search(f.name):
             errors.append(f"{f.relative_to(PUBLIC)}: file name has no content hash")
+    for f in sorted(PUBLIC.rglob("*.css")):
+        depth, text = 0, f.read_text(encoding="utf-8")
+        for i, ch in enumerate(text):
+            if ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+            elif ch == "@" and text.startswith("@media", i) and depth > 0:
+                errors.append(f"{f.relative_to(PUBLIC)}: @media nested inside another block (unclosed brace above it)")
+                break
+        if depth != 0:
+            errors.append(f"{f.relative_to(PUBLIC)}: unbalanced braces (depth {depth} at end)")
     for e in errors:
         print("FAIL", e)
     print("check_output:", "FAILED" if errors else "ok")
