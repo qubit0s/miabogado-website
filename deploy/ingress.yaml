@@ -1,6 +1,5 @@
----
 # Reached through the Cloudflare Tunnel and Traefik. No tls block: Cloudflare terminates TLS (ADR 0009).
-# The mi-abogado.us hosts are added in Phase 5, not before.
+# mi-abogado.us hosts added for the Phase 5 cutover; the poly.one host stays as the test host.
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -9,6 +8,26 @@ spec:
   ingressClassName: traefik
   rules:
     - host: mi-abogado.poly.one
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  name: http
+    - host: www.mi-abogado.us
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  name: http
+    - host: mi-abogado.us
       http:
         paths:
           - path: /
